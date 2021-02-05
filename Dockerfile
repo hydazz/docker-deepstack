@@ -13,66 +13,66 @@ RUN set -ex && \
 	echo "**** install packages ****" && \
 	apt-get install -y --no-install-recommends \
 		#autoconf \
-     	#automake \
-     	build-essential \
-     	#bzip2 \
-     	ca-certificates \
-     	curl \
-     	default-libmysqlclient-dev \
-     	#dpkg-dev \
-     	ffmpeg \
-     	#file \
-     	#g++ \
-     	#gcc \
+		#automake \
+		build-essential \
+		#bzip2 \
+		ca-certificates \
+		curl \
+		default-libmysqlclient-dev \
+		#dpkg-dev \
+		ffmpeg \
+		#file \
+		#g++ \
+		#gcc \
 		golang \
-     	#git \
-     	imagemagick \
-     	#libbluetooth-dev \
-     	#libbz2-dev \
-     	libc6-dev \
-     	libcurl4-openssl-dev \
-     	libdb-dev \
-     	libevent-dev \
-     	libffi-dev \
-     	libgdbm-dev \
-     	libglib2.0-0 \
-     	libglib2.0-dev \
-     	libgmp-dev \
-     	libjpeg-dev \
-     	libkrb5-dev \
-     	liblzma-dev \
-     	libmagickcore-dev \
-     	libmagickwand-dev \
-     	libmaxminddb-dev \
-     	libncurses5-dev \
-     	libncursesw5-dev \
-     	libpng-dev \
-     	libpq-dev \
-     	libreadline-dev \
-     	libsm6 \
-     	libsqlite3-dev \
-     	libssl-dev \
-     	libtool \
-     	libwebp-dev \
-     	libxext6 \
-     	libxml2-dev \
-     	libxrender1 \
-     	libxslt-dev \
-     	libyaml-dev \
-     	#make \
-     	mercurial \
-     	netbase \
-     	#openssh-client \
-     	#patch \
-     	#procps \
-     	redis-server \
-     	#subversion \
-     	tk-dev \
-     	#unzip \
-     	uuid-dev \
-     	#wget \
-     	xz-utils \
-     	zlib1g-dev && \
+		#git \
+		imagemagick \
+		#libbluetooth-dev \
+		#libbz2-dev \
+		libc6-dev \
+		libcurl4-openssl-dev \
+		libdb-dev \
+		libevent-dev \
+		libffi-dev \
+		libgdbm-dev \
+		libglib2.0-0 \
+		libglib2.0-dev \
+		libgmp-dev \
+		libjpeg-dev \
+		libkrb5-dev \
+		liblzma-dev \
+		libmagickcore-dev \
+		libmagickwand-dev \
+		libmaxminddb-dev \
+		libncurses5-dev \
+		libncursesw5-dev \
+		libpng-dev \
+		libpq-dev \
+		libreadline-dev \
+		libsm6 \
+		libsqlite3-dev \
+		libssl-dev \
+		libtool \
+		libwebp-dev \
+		libxext6 \
+		libxml2-dev \
+		libxrender1 \
+		libxslt-dev \
+		libyaml-dev \
+		#make \
+		mercurial \
+		netbase \
+		#openssh-client \
+		#patch \
+		#procps \
+		redis-server \
+		#subversion \
+		tk-dev \
+		unzip \
+		uuid-dev \
+		#wget \
+		xz-utils \
+		zlib1g-dev && \
 	echo "**** build python ****" && \
 	curl -o \
 		/tmp/python.tar.xz -L \
@@ -143,7 +143,8 @@ RUN set -ex && \
 	echo "**** cleanup ****" && \
 	apt-get remove --purge -y \
 		build-essential \
-		golang && \
+		golang \
+		unzip && \
 	apt-get autoremove -y && \
 	apt-get clean && \
 	rm -rf \
