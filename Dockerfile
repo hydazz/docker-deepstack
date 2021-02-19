@@ -134,7 +134,7 @@ RUN set -ex && \
 COPY --from=builder /app /app/deepstack
 
 # copy local files
-COPY root/ /
+COPY root/* /
 
 # ports and volumes
 EXPOSE 5000
