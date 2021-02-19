@@ -1,3 +1,5 @@
+FROM deepquestai/deepstack:cpu as builder
+
 FROM vcxpz/baseimage-ubuntu:latest
 
 ENV SLEEP_TIME="0.01" \
@@ -23,7 +25,6 @@ RUN set -ex && \
 		file \
 		g++ \
 		gcc \
-		golang \
 		unzip \
 		git \
 		imagemagick \
@@ -122,24 +123,6 @@ RUN set -ex && \
 		scipy \
 		tensorboard \
 		tqdm && \
-	echo "**** download deepstack ****" && \
-	curl --silent -o \
-		/tmp/deepstack.zip -L \
-		"https://github.com/johnolafenwa/DeepStack/archive/dev.zip" && \
-	unzip -q \
-		/tmp/deepstack.zip -d \
-		/tmp/ && \
-	mkdir -p \
-		/app/deepstack \
-		/deeptemp && \
-	rm /tmp/DeepStack-dev/sharedfiles/yolov5s.pt && \
-	mv /tmp/DeepStack-dev/sharedfiles /app/deepstack/ && \
-	mv /tmp/DeepStack-dev/server /app/deepstack/ && \
-	mv /tmp/DeepStack-dev/intelligencelayer /app/deepstack/ && \
-	mv /tmp/DeepStack-dev/init.py /app/deepstack/ && \
-	echo "**** build deepstack ****" && \
-	cd /app/deepstack/server && \
-	go build && \
 	echo "**** cleanup ****" && \
 	apt-get autoremove -y && \
 	apt-get clean && \
@@ -147,6 +130,8 @@ RUN set -ex && \
 		/tmp/* \
 		/var/lib/apt/lists/* \
 		/var/tmp/*
+
+COPY --from=builder /app /app/deepstack
 
 # copy local files
 COPY root/ /
